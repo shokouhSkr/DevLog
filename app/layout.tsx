@@ -14,20 +14,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.className} scroll-smooth bg-red-200 text-slate-800 transition-colors duration-500 dark:bg-black dark:text-xl dark:text-slate-200`}
+        className={`${inter.className} scroll-smooth bg-primary-light text-primary-dark dark:bg-primary-dark dark:text-primary-light`}
       >
         <Providers>
-          <header>
-            <nav>
-              <li>
-                <Link href="/" className="text-green-500 dark:text-white">
-                  home nav
-                </Link>
-              </li>
-            </nav>
-          </header>
           <main className="min-h-[calc(100vh-50px)]">{children}</main>
-          <footer>footer</footer>
         </Providers>
       </body>
     </html>
