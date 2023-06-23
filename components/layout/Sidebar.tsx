@@ -7,22 +7,26 @@ import { navLinks } from "@/helpers/constants";
 import { NavLinkType } from "@/types";
 import { usePathname } from "next/navigation";
 import Button from "../Button";
-import { getSidebarState, setSidebarState } from "@/helpers/utils/localStorage";
 
 const typedNavLinks: NavLinkType[] = navLinks;
+
+const getSidebarState = () => {
+  const storedValue = localStorage.getItem("sidebarState");
+  return storedValue !== null ? JSON.parse(storedValue) : false;
+};
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(getSidebarState());
   const pathname = usePathname();
 
   useEffect(() => {
-    setSidebarState(isSidebarOpen);
+    localStorage.setItem("sidebarState", JSON.stringify(isSidebarOpen));
   }, [isSidebarOpen]);
 
   return (
     <aside
       className={`${
-        isSidebarOpen ? "w-60" : "w-14"
+        isSidebarOpen ? "w-60" : "w-[56px]"
       } relative flex h-screen w-60 flex-col bg-secondary p-4 transition-[width] duration-300`}
     >
       {/* SIDEBAR LOGO */}
