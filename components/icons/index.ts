@@ -6,6 +6,7 @@ import PostsIcon from "./PostsIcon";
 import ContactIcon from "./ContactIcon";
 import LeftMenuIcon from "./LeftMenuIcon";
 import RightMenuIcon from "./RightMenuIcon";
+import CreatePostIcon from "./CreatePostIcon";
 
 export {
   Logo,
@@ -16,4 +17,5 @@ export {
   ContactIcon,
   LeftMenuIcon,
   RightMenuIcon,
+  CreatePostIcon,
 };

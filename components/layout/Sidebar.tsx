@@ -7,27 +7,23 @@ import { navLinks } from "@/helpers/constants";
 import { NavLinkType } from "@/types";
 import { usePathname } from "next/navigation";
 import Button from "../Button";
+import { getSidebarState, setSidebarState } from "@/helpers/utils";
 
 const typedNavLinks: NavLinkType[] = navLinks;
-
-const getSidebarState = () => {
-  const storedValue = localStorage.getItem("sidebarState");
-  return storedValue !== null ? JSON.parse(storedValue) : false;
-};
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(getSidebarState());
   const pathname = usePathname();
 
   useEffect(() => {
-    localStorage.setItem("sidebarState", JSON.stringify(isSidebarOpen));
+    setSidebarState(isSidebarOpen);
   }, [isSidebarOpen]);
 
   return (
     <aside
       className={`${
-        isSidebarOpen ? "w-60" : "w-[56px]"
-      } relative flex h-screen w-60 flex-col bg-secondary p-4 transition-[width] duration-300`}
+        isSidebarOpen ? "w-60" : "w-14"
+      } sticky top-0 flex h-screen flex-col bg-secondary p-4 transition-[width] duration-300`}
     >
       {/* SIDEBAR LOGO */}
       <Link href="/admin" className="mb-16 flex items-center gap-2">
@@ -46,7 +42,7 @@ const Sidebar = () => {
             }`}
           >
             <link.icon className="h-5 w-5" />
-            {isSidebarOpen && <span className="text-xs">{link.title}</span>}
+            {isSidebarOpen && <span className="leading-none">{link.title}</span>}
           </Link>
         ))}
       </div>
